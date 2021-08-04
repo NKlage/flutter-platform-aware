@@ -1,12 +1,57 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
-import 'package:platform_aware/platform_aware.dart';
+import 'mocks/platform_aware_scaffold_mock.dart';
 
 void main() {
-  test('adds one to input values', () {
-    final calculator = Calculator();
-    expect(calculator.addOne(2), 3);
-    expect(calculator.addOne(-7), -6);
-    expect(calculator.addOne(0), 1);
+
+  Widget buildMaterialApp() {
+    return MaterialApp(
+      home: PlatformAwareScaffoldMock(),
+    );
+  }
+
+  group('PlatformAwareScaffold >', () {
+
+    testWidgets(
+      'displays CupertinoPageScaffold on iOS',
+          (tester) async {
+        debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+        await tester.pumpWidget(buildMaterialApp());
+
+        expect(find.byType(CupertinoPageScaffold), findsOneWidget);
+        expect(find.byType(CupertinoNavigationBar), findsOneWidget);
+        debugDefaultTargetPlatformOverride = null;
+      },
+    );
+
+    testWidgets(
+      'displays Scaffold on Android',
+          (tester) async {
+        debugDefaultTargetPlatformOverride = TargetPlatform.android;
+        await tester.pumpWidget(buildMaterialApp());
+
+        expect(find.byType(Scaffold), findsOneWidget);
+        expect(find.byType(AppBar), findsOneWidget);
+        debugDefaultTargetPlatformOverride = null;
+      },
+    );
+
+    testWidgets(
+      'displays Container on other platform',
+          (tester) async {
+
+        String expectedText = 'Platform not implemented (macos)';
+        debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+
+        await tester.pumpWidget(buildMaterialApp());
+
+        expect(find.byType(Container), findsOneWidget);
+        expect(find.text(expectedText), findsOneWidget);
+        debugDefaultTargetPlatformOverride = null;
+      },
+    );
   });
 }

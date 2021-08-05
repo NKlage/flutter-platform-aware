@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 
 abstract class PlatformAware<IOS extends Widget, ANDROID extends Widget> extends StatelessWidget {
+
   const PlatformAware({Key? key}) : super(key: key);
 
   @override
@@ -14,9 +15,7 @@ abstract class PlatformAware<IOS extends Widget, ANDROID extends Widget> extends
       case TargetPlatform.iOS:
         return createIosWidget(context);
       default:
-        return Container(
-          child: Text('Platform not implemented ($defaultTargetPlatform)'),
-        );
+        return Text('Platform not implemented ($defaultTargetPlatform)');
     }
   }
 

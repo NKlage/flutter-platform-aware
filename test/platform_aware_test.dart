@@ -8,7 +8,7 @@ import 'mocks/platform_aware_scaffold_mock.dart';
 void main() {
 
   Widget buildMaterialApp() {
-    return MaterialApp(
+    return const MaterialApp(
       home: PlatformAwareScaffoldMock(),
     );
   }
@@ -48,7 +48,6 @@ void main() {
 
         await tester.pumpWidget(buildMaterialApp());
 
-        expect(find.byType(Container), findsOneWidget);
         expect(find.text(expectedText), findsOneWidget);
         debugDefaultTargetPlatformOverride = null;
       },

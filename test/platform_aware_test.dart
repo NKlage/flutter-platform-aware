@@ -43,8 +43,8 @@ void main() {
       'displays Container on other platform',
           (tester) async {
 
-        String expectedText = 'Platform not implemented (macos)';
         debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+        String expectedText = 'Platform not implemented ($debugDefaultTargetPlatformOverride)';
 
         await tester.pumpWidget(buildMaterialApp());
 

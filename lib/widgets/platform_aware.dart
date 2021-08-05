@@ -1,6 +1,6 @@
 
-import 'package:flutter/material.dart';
-import 'dart:io';
+import 'package:flutter/widgets.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class PlatformAware<IOS extends Widget, ANDROID extends Widget> extends StatelessWidget {
   const PlatformAware({Key? key}) : super(key: key);
@@ -8,18 +8,16 @@ abstract class PlatformAware<IOS extends Widget, ANDROID extends Widget> extends
   @override
   Widget build(BuildContext context) {
 
-    final _platform = Theme.of(context).platform;
-
-    if(TargetPlatform.android == _platform) {
-      return createAndroidWidget(context);
-    } else if (TargetPlatform.iOS == _platform) {
-      return createIosWidget(context);
-    } else {
-      return Container(
-        child: Text('Platform not implemented (${Platform.operatingSystem})'),
-      );
+    switch(defaultTargetPlatform){
+      case TargetPlatform.android:
+        return createAndroidWidget(context);
+      case TargetPlatform.iOS:
+        return createIosWidget(context);
+      default:
+        return Container(
+          child: Text('Platform not implemented ($defaultTargetPlatform)'),
+        );
     }
-
   }
 
   IOS createIosWidget(BuildContext context);

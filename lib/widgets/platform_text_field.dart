@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:platform_aware/platformaware.dart';
 
 class PlatformTextField extends PlatformAware<CupertinoTextField, TextField> {
-  final TextEditingController textController;
+  final TextEditingController? textController;
 
-  const PlatformTextField({Key? key, required this.textController})
-      : super(key: key);
+  const PlatformTextField({Key? key, this.textController}) : super(key: key);
 
   @override
   TextField createAndroidWidget(BuildContext context) {

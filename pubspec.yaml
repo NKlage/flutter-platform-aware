@@ -1,7 +1,7 @@
 name: platform_aware
 description: Flutter Platform Aware Package.
-version: 0.0.1+1
-homepage:
+version: 0.0.1+2
+#homepage:
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

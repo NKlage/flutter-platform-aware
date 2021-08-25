@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:platform_aware/platformaware.dart';
 
 class PlatformAwareScaffoldMock
-    extends PlatformAware<CupertinoPageScaffold, Scaffold> {
-   const PlatformAwareScaffoldMock({Key? key}) : super(key: key);
+    extends MobileDevice<CupertinoPageScaffold, Scaffold> {
+  const PlatformAwareScaffoldMock({Key? key}) : super(key: key);
 
   @override
   Scaffold createAndroidWidget(BuildContext context) {

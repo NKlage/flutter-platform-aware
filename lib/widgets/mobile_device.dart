@@ -2,9 +2,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 
-abstract class PlatformAware<IOS extends Widget, ANDROID extends Widget> extends StatelessWidget {
+abstract class MobileDevice<IOS extends Widget, ANDROID extends Widget> extends StatelessWidget {
 
-  const PlatformAware({Key? key}) : super(key: key);
+  const MobileDevice({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,7 @@ abstract class PlatformAware<IOS extends Widget, ANDROID extends Widget> extends
   }
 
   IOS createIosWidget(BuildContext context);
+
   ANDROID createAndroidWidget(BuildContext context);
 
 }

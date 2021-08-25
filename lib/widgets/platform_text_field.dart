@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platform_aware/platformaware.dart';
 
-class PlatformTextField extends PlatformAware<CupertinoTextField, TextField> {
+import '../platformaware.dart';
+
+class PlatformTextField extends MobileDevice<CupertinoTextField, TextField> {
   final TextEditingController? textController;
   final InputDecoration? materialDecoration;
   final BoxDecoration? cupertinoDecoration;
